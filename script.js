@@ -35,3 +35,25 @@ function playRound(playerSelection, computerSelection) {
     return 'Loss!';
   }
 }
+
+function game() {
+  // Define scores
+  let playerScore = 0,
+    cpuScore = 0,
+    gameCount = 0;
+
+  // Play 5 rounds of RPS
+  while (gameCount < 5) {
+    gameCount++;
+    let currentRound = playRound();
+    if (currentRound === 'Win!') playerScore++;
+    else if (currentRound === 'Loss!') cpuScore++;
+    // Log current score to the console
+    console.log(`Player - CPU
+        ${playerScore} - ${cpuScore}`);
+  }
+  // Define Win, Loss and Draw and log final score to the console
+  if (playerScore === cpuScore) console.log('Draw!');
+  else if (playerScore > cpuScore) console.log('Player wins!');
+  else console.log('CPU wins!');
+}
