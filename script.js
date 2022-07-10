@@ -18,6 +18,16 @@ function playRound(playerSelection, computerSelection) {
     "Choose and type one: 'Rock', 'Paper' or 'Scissors'"
   ).toLowerCase();
 
+  // Validate player input, if not valid present another prompt
+  while (
+    playerSelection !== 'rock' &&
+    playerSelection !== 'paper' &&
+    playerSelection !== 'scissors'
+  ) {
+    playerSelection = prompt(
+      "Choose and type one: 'Rock', 'Paper' or 'Scissors'"
+    ).toLowerCase();
+  }
   // Define Draw
   if (playerSelection === computerSelection) {
     return 'Draw!';
