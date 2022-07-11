@@ -1,4 +1,4 @@
-// Create function to make CPU opponent randomly choose Rock, Paper or Scissors.
+// Function to make CPU opponent randomly choose Rock, Paper or Scissors.
 function computerPlay() {
   const choice = Math.floor(Math.random() * 3);
   switch (choice) {
@@ -11,7 +11,7 @@ function computerPlay() {
   }
 }
 
-// Create function that takes Player and CPU Choice and plays a single round of Rock, Paper, Scissors
+// Function that takes Player and CPU Choice and plays a single round of Rock, Paper, Scissors
 function playRound(playerSelection, computerSelection) {
   computerSelection = computerPlay().toLowerCase();
   playerSelection = prompt(
@@ -59,6 +59,7 @@ function playRound(playerSelection, computerSelection) {
   }
 }
 
+// Main Game function
 function game() {
   // Define scores
   let playerScore = 0,
