@@ -16,8 +16,12 @@ function playRound(playerSelection, computerSelection) {
   computerSelection = computerPlay().toLowerCase();
   playerSelection = prompt(
     "Choose and type one: 'Rock', 'Paper' or 'Scissors'"
-  ).toLowerCase();
-
+  );
+  // Define output of player exiting prompt
+  if (playerSelection === null) {
+    return 'Cancelled!';
+  }
+  playerSelection = playerSelection.toLowerCase();
   // Validate player input, if not valid present another prompt
   while (
     playerSelection !== 'rock' &&
@@ -26,10 +30,19 @@ function playRound(playerSelection, computerSelection) {
   ) {
     playerSelection = prompt(
       "Choose and type one: 'Rock', 'Paper' or 'Scissors'"
-    ).toLowerCase();
+    );
+    // Define output of player exiting prompt
+    if (playerSelection === null) {
+      return 'Cancelled!';
+    }
+    playerSelection = playerSelection.toLowerCase();
+  }
+  // Define output of player exiting prompt
+  if (playerSelection === null) {
+    return 'Cancelled!';
   }
   // Define Draw
-  if (playerSelection === computerSelection) {
+  else if (playerSelection === computerSelection) {
     return 'Draw!';
   }
   // Define Win cases for the player
@@ -56,7 +69,13 @@ function game() {
   while (gameCount < 5) {
     gameCount++;
     let currentRound = playRound();
-    if (currentRound === 'Win!') playerScore++;
+    // Cancel game when player cancels prompt
+    if (currentRound === 'Cancelled!') {
+      console.log('Player cancelled the game.');
+      return 'Game cancelled!';
+    }
+    // Add scores depending on winner of currentRound
+    else if (currentRound === 'Win!') playerScore++;
     else if (currentRound === 'Loss!') cpuScore++;
     // Log current score to the console
     console.log(`Player - CPU
