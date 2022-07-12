@@ -3,65 +3,65 @@ function computerPlay() {
   const choice = Math.floor(Math.random() * 3);
   switch (choice) {
     case 0:
-      return 'Rock';
+      return 'rock';
     case 1:
-      return 'Paper';
+      return 'paper';
     case 2:
-      return 'Scissors';
+      return 'scissors';
   }
 }
 
-// Function that takes Player and CPU Choice and plays a single round of Rock, Paper, Scissors
-function playRound(playerSelection, computerSelection) {
-  computerSelection = computerPlay().toLowerCase();
-  playerSelection = prompt(
+function letPlayerSelect() {
+  let playerSelection = prompt(
     "Choose and type one: 'Rock', 'Paper' or 'Scissors'"
   );
-  // Define output of player exiting prompt
+  // Validation of Input
   if (playerSelection === null) {
     return 'Cancelled!';
   }
   playerSelection = playerSelection.toLowerCase();
-  // Validate player input, if not valid present another prompt
   while (
     playerSelection !== 'rock' &&
     playerSelection !== 'paper' &&
-    playerSelection !== 'scissors'
+    playerSelection !== 'scissors' &&
+    playerSelection !== null
   ) {
     playerSelection = prompt(
       "Choose and type one: 'Rock', 'Paper' or 'Scissors'"
     );
-    // Define output of player exiting prompt
     if (playerSelection === null) {
       return 'Cancelled!';
     }
     playerSelection = playerSelection.toLowerCase();
   }
-  // Define output of player exiting prompt
-  if (playerSelection === null) {
-    return 'Cancelled!';
-  }
-  // Define Draw
-  else if (playerSelection === computerSelection) {
+  return playerSelection;
+}
+
+function playRound(playerSelection, computerSelection) {
+  computerSelection = computerPlay();
+  playerSelection = letPlayerSelect();
+  if (playerSelection === 'Cancelled!') return 'Cancelled!';
+
+  if (playerSelection === computerSelection) {
+    console.log('Draw!');
     return 'Draw!';
   }
-  // Define Win cases for the player
+  // Win cases for the player
   else if (
     (playerSelection === 'rock' && computerSelection === 'scissors') ||
     (playerSelection === 'paper' && computerSelection === 'rock') ||
     (playerSelection === 'scissors' && computerSelection === 'paper')
   ) {
+    console.log('Win!');
     return 'Win!';
-  }
-  // Define Loss cases for the player
-  else {
+  } else {
+    console.log('Loss!');
     return 'Loss!';
   }
 }
 
 // Main Game function
 function game() {
-  // Define scores
   let playerScore = 0,
     cpuScore = 0,
     gameCount = 0;
